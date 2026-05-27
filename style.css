@@ -1,0 +1,469 @@
+/* ============================================
+   Design Tokens
+============================================ */
+:root {
+  --clr-yellow : #FFEB00;
+  --clr-black  : #000000;
+  --clr-red    : #FF0000;
+  --clr-white  : #FFFFFF;
+
+  --bp-tablet  : 1024px;
+  --bp-mobile  : 768px;
+
+  --cont-max   : 1200px;
+  --cont-pad   : 60px;   /* 데스크톱 좌우 여백 */
+}
+
+/* ============================================
+   Reset & Base
+============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* ① html에 overflow-x 설정 → 수평 기준 고정 */
+}
+
+body {
+  font-family: 'Asta Sans', 'Noto Sans KR', sans-serif;
+  background-color: var(--clr-yellow);
+  color: var(--clr-black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================
+   Layout
+============================================ */
+#wrapper {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 콘텐츠 센터 컨테이너 (각 섹션 내부에서 사용) */
+.container {
+  width: 100%;
+  max-width: var(--cont-max);
+  margin: 0 auto;
+  padding: 0 var(--cont-pad);
+}
+
+/* ============================================
+   배경 코인 (Parallax)
+   작동 원리:
+     position:absolute로 페이지에 배치된 코인들은
+     기본적으로 콘텐츠와 1:1로 스크롤됨.
+     JS에서 translateY(scrollY * speed)를 더해
+     속도를 늦춰 배경처럼 보이게 함.
+     speed 0 → 콘텐츠와 동일 속도 (패럴렉스 없음)
+     speed 1 → 완전 고정 (position:fixed 동일)
+============================================ */
+.bg-coins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden; /* ② 코인들이 컨테이너 밖으로 레이아웃에 영향 주는 것 차단 */
+}
+
+.coin {
+  position: absolute;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* 기본 opacity — 각 코인에서 개별 override */
+  opacity: 0.20;
+}
+
+/* ─── 코인별 위치·크기·투명도 ─────────────────
+   · 큰 코인(배경): 흐리게, 느리게(speed 높음)
+   · 작은 코인(근거리): 또렷하게, 빠르게(speed 낮음)
+──────────────────────────────────────────── */
+
+/* sec01 */
+.coin--1  { top:  1%; left:  -2%; width: 260px; opacity: 0.14; }  /* 크고 느림 */
+.coin--2  { top:  5%; right:  3%; width: 120px; opacity: 0.26; }
+.coin--3  { top: 10%; left:  61%; width:  85px; opacity: 0.18; }  /* 중앙 근처 작게 */
+
+/* sec01 → sec02 전환 */
+.coin--4  { top: 18%; left:   4%; width: 170px; opacity: 0.20; }
+.coin--5  { top: 25%; right: -1%; width: 210px; opacity: 0.14; }  /* 우측 넘침 */
+
+/* sec02 */
+.coin--6  { top: 34%; right:  5%; width: 140px; opacity: 0.18; }
+.coin--7  { top: 41%; left:  -1%; width: 100px; opacity: 0.28; }
+.coin--8  { top: 49%; left:  59%; width: 155px; opacity: 0.12; }  /* 배경 깊숙이 */
+
+/* sec02 → sec03 전환 */
+.coin--9  { top: 58%; left:   2%; width: 190px; opacity: 0.17; }
+.coin--10 { top: 64%; right:  4%; width: 110px; opacity: 0.30; }  /* 가장 또렷한 편 */
+
+/* sec03 */
+.coin--11 { top: 72%; left:   7%; width: 130px; opacity: 0.20; }
+.coin--12 { top: 79%; right: -1%; width: 175px; opacity: 0.14; }
+
+/* sec04 */
+.coin--13 { top: 89%; left:  47%; width: 100px; opacity: 0.22; }
+
+/* ============================================
+   섹션 공통
+============================================ */
+.section {
+  position: relative;
+  z-index: 1;  /* .bg-coins(z:0) 위에 콘텐츠 표시 */
+}
+
+/* 임시 최소 높이 — 각 섹션 콘텐츠 채우면 제거 */
+.section { min-height: 50vh; }
+
+/* ============================================
+   SEC01 — 타이틀
+============================================ */
+#sec01 {
+  padding-top: 72px;
+}
+
+/* 로고 + 타이틀 묶음 (중앙 정렬) */
+.sec01-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 1080px;
+  margin: 0 auto 56px;
+  padding: 0 var(--cont-pad);
+}
+
+/* BI 로고 (카카오페이 × 피카PC방) */
+.bi-logo {
+  width: 446px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 헤드 타이틀 SVG */
+.head-title {
+  max-width: 100%;
+  height: auto;
+}
+
+.head-title--pc {
+  width: 927px;   /* 자연 크기, 컨테이너에 맞춰 축소 */
+}
+
+.head-title--mo {
+  display: none;  /* 모바일에서만 표시 */
+}
+
+/* 키비주얼 */
+.sec01-kv {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--cont-pad);
+}
+
+.kv-hero {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ============================================
+   SEC02 — 이벤트 내용
+============================================ */
+#sec02 {
+  padding: 100px 0 120px;
+}
+
+.sec02-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--cont-pad);
+}
+
+/* 이벤트 항목 목록 */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  list-style: none;
+}
+
+/* 각 행: badge + content */
+.event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+/* 배지 — 검정 pill */
+.event-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 136px;
+  height: 54px;
+  padding: 0 20px;
+  background-color: var(--clr-black);
+  border-radius: 50px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--clr-white);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 콘텐츠 영역 */
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding-top: 4px; /* badge 텍스트 중심선에 맞춤 */
+}
+
+/* 본문 텍스트
+   원본: Sandoll GothicNeo1 05 Md → Gothic A1 500으로 대체 */
+.event-desc {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--clr-black);
+  line-height: calc(45 / 32); /* ≈ 1.406 */
+  letter-spacing: -0.01em;
+}
+
+/* 주석 텍스트 (warm gray) */
+.event-note {
+  font-size: 22px;
+  font-weight: 400;
+  color: #6D6757;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+}
+
+.event-note--red {
+  color: var(--clr-red);
+}
+
+/* 혜택 하이라이트 행 */
+.event-benefit {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* 강조 박스 — 검정 라운드 사각형 */
+.event-highlight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  padding: 0 27px;
+  background-color: var(--clr-black);
+  border-radius: 20px;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--clr-white);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+/* ============================================
+   SEC03 — 참여방법
+============================================ */
+#sec03 {
+  /* TODO */
+}
+
+/* ============================================
+   SEC04 — 유의사항
+============================================ */
+#sec04 {
+  /* TODO */
+}
+
+
+/* ============================================
+   Responsive — 태블릿 (≤ 1024px)
+============================================ */
+@media (max-width: 1024px) {
+  :root {
+    --cont-pad: 40px;
+  }
+
+  /* 패럴렉스 JS가 !important를 물고 있지 않으므로
+     CSS에서 transform을 none으로 덮어씌워 정지  */
+  .coin {
+    transform: none !important;
+  }
+
+  /* 큰 코인들 축소 */
+  .coin--1  { width: 190px; }
+  .coin--5  { width: 155px; }
+  .coin--8  { width: 115px; }
+  .coin--9  { width: 140px; }
+  .coin--12 { width: 130px; }
+
+  /* SEC01 태블릿 */
+  #sec01 {
+    padding-top: 56px;
+  }
+
+  .sec01-header {
+    gap: 32px;
+    margin-bottom: 44px;
+  }
+
+  .bi-logo {
+    width: 340px;
+  }
+
+  /* SEC02 태블릿 */
+  #sec02 {
+    padding: 80px 0 100px;
+  }
+
+  .event-list {
+    gap: 28px;
+  }
+
+  .event-item {
+    gap: 36px;
+  }
+
+  .event-badge {
+    min-width: 110px;
+    height: 46px;
+    font-size: 26px;
+  }
+
+  .event-desc {
+    font-size: 26px;
+  }
+
+  .event-note {
+    font-size: 17px;
+  }
+
+  .event-highlight {
+    height: 54px;
+    font-size: 28px;
+    border-radius: 14px;
+  }
+}
+
+/* ============================================
+   Responsive — 모바일 (≤ 768px)
+============================================ */
+@media (max-width: 768px) {
+  :root {
+    --cont-pad: 20px;
+  }
+
+  /* 코인 절반 숨기기 (너무 복잡해 보이지 않게) */
+  .coin--3,
+  .coin--5,
+  .coin--8,
+  .coin--10,
+  .coin--12 {
+    display: none;
+  }
+
+  /* 남은 코인 크기 · 투명도 조정 */
+  .coin--1  { width: 140px; left: -5%;  opacity: 0.12; }
+  .coin--2  { width:  80px;             opacity: 0.20; }
+  .coin--4  { width: 110px;             opacity: 0.15; }
+  .coin--6  { width:  90px;             opacity: 0.15; }
+  .coin--7  { width:  70px;             opacity: 0.22; }
+  .coin--9  { width: 120px;             opacity: 0.14; }
+  .coin--11 { width:  85px;             opacity: 0.18; }
+  .coin--13 { width:  70px;             opacity: 0.18; }
+
+  /* SEC02 모바일 */
+  #sec02 {
+    padding: 60px 0 80px;
+  }
+
+  .event-list {
+    gap: 20px;
+  }
+
+  .event-item {
+    gap: 14px;
+  }
+
+  .event-badge {
+    min-width: 64px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 50px;
+  }
+
+  .event-content {
+    gap: 5px;
+    padding-top: 2px;
+  }
+
+  .event-desc {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .event-note {
+    font-size: 11px;
+  }
+
+  .event-benefit {
+    flex-wrap: wrap;    /* 작은 화면에서 줄바꿈 허용 */
+    align-items: center;
+    gap: 6px;
+  }
+
+  .event-highlight {
+    height: 38px;
+    font-size: 17px;
+    border-radius: 10px;
+    padding: 0 16px;
+  }
+
+  /* SEC01 모바일 */
+  #sec01 {
+    padding-top: 40px;
+  }
+
+  .sec01-header {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .bi-logo {
+    width: 240px;
+  }
+
+  /* PC 타이틀 → 모바일 타이틀 교체 */
+  .head-title--pc {
+    display: none;
+  }
+
+  .head-title--mo {
+    display: block;
+    width: 100%;
+  }
+
+  /* KV: 모바일에서 좌우 여백 제거 → 풀블리드 */
+  .sec01-kv {
+    padding: 0;
+  }
+}

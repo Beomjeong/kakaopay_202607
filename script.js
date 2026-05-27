@@ -1,0 +1,67 @@
+/**
+ * KakaoPay Event Page — Main Script
+ *
+ * 1. Parallax Background Coins
+ *    배경 코인들이 스크롤 속도차로 깊이감을 연출.
+ *    CSS top%로 위치 잡힌 코인에 translateY(scrollY * speed)를 더해
+ *    속도를 낮춤 → 콘텐츠보다 천천히 스크롤 = 배경처럼 보임.
+ *
+ *    speed = 0  : 콘텐츠와 동일 (패럴렉스 없음)
+ *    speed = 1  : 완전 고정 (position:fixed 동일)
+ *    사용 범위   : 0.3 ~ 0.7
+ */
+
+(function () {
+  'use strict';
+
+  /* ───────────────────────────────
+     설정값
+  ─────────────────────────────── */
+  var PARALLAX_MAX_WIDTH = 1024; // 이 너비 이하에서는 패럴렉스 비활성화
+
+  /* ───────────────────────────────
+     1. Parallax
+  ─────────────────────────────── */
+  var coins = document.querySelectorAll('.bg-coins .coin[data-speed]');
+  var ticking = false;
+
+  function updateParallax() {
+    var scrollY = window.scrollY || window.pageYOffset;
+    for (var i = 0; i < coins.length; i++) {
+      var speed = parseFloat(coins[i].dataset.speed) || 0;
+      /* ③ translate3d(0, Y, 0) → GPU 컴포지팅 레이어 분리, 레이아웃 재계산 방지 */
+      coins[i].style.transform = 'translate3d(0,' + (scrollY * speed) + 'px,0)';
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  function initParallax() {
+    // 뷰포트 폭이 기준 이하면 종료 (CSS transform:none!important 가 이미 처리)
+    if (window.innerWidth <= PARALLAX_MAX_WIDTH) return;
+
+    // 접근성: 움직임 최소화 선호 시 비활성화
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax(); // 초기 위치 즉시 적용
+  }
+
+  /* ───────────────────────────────
+     초기화
+  ─────────────────────────────── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initParallax);
+  } else {
+    initParallax();
+  }
+
+})();
