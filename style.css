@@ -219,6 +219,7 @@ img {
   max-width: 100%;
 }
 
+/* SVG를 mask로 써서 shine이 글자/그래픽 영역에만 표시되게 함 */
 .head-title-wrap::after {
   content: "";
   position: absolute;
@@ -230,26 +231,34 @@ img {
   transform: translateX(-200%) skewX(-15deg);
   animation: shine-sweep 3s ease-in-out infinite;
   pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+.head-title-wrap--pc::after {
+  -webkit-mask-image: url('assets/head_title_pc.svg');
+          mask-image: url('assets/head_title_pc.svg');
+}
+
+.head-title-wrap--mo {
+  display: none;
+}
+
+.head-title-wrap--mo::after {
+  -webkit-mask-image: url('assets/head_title_mo.svg');
+          mask-image: url('assets/head_title_mo.svg');
 }
 
 @keyframes shine-sweep {
-  0% {
-    transform: translateX(-200%) skewX(-15deg);
-  }
-
-  22% {
-    transform: translateX(200%) skewX(-15deg);
-  }
-
-  100% {
-    transform: translateX(200%) skewX(-15deg);
-  }
+  0%   { transform: translateX(-200%) skewX(-15deg); }
+  22%  { transform: translateX(200%)  skewX(-15deg); }
+  100% { transform: translateX(200%)  skewX(-15deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .head-title-wrap::after {
-    animation: none;
-  }
+  .head-title-wrap::after { animation: none; }
 }
 
 .head-title {
@@ -258,14 +267,12 @@ img {
   display: block;
 }
 
-.head-title--pc {
+.head-title-wrap--pc .head-title {
   width: 927px;
-  /* 자연 크기, 컨테이너에 맞춰 축소 */
 }
 
-.head-title--mo {
-  display: none;
-  /* 모바일에서만 표시 */
+.head-title-wrap--mo .head-title {
+  width: 100%;
 }
 
 /* 키비주얼 */
@@ -848,11 +855,11 @@ img {
   }
 
   /* PC 타이틀 → 모바일 타이틀 교체 */
-  .head-title--pc {
+  .head-title-wrap--pc {
     display: none;
   }
 
-  .head-title--mo {
+  .head-title-wrap--mo {
     display: block;
     width: 100%;
   }
