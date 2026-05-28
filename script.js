@@ -53,12 +53,43 @@
   }
 
   /* ───────────────────────────────
+     2. Entrance Animations
+  ─────────────────────────────── */
+  function initEntranceAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var items = document.querySelectorAll('#sec02 .event-item');
+    if (!items.length || !('IntersectionObserver' in window)) return;
+
+    items.forEach(function (item, i) {
+      item.classList.add('anim-item');
+      item.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    items.forEach(function (item) { observer.observe(item); });
+  }
+
+  /* ───────────────────────────────
      초기화
   ─────────────────────────────── */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initParallax);
-  } else {
+  function init() {
     initParallax();
+    initEntranceAnimations();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 
 })();
