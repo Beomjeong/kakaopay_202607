@@ -115,12 +115,58 @@
   }
 
   /* ───────────────────────────────
+     4. SEC04 Entrance Animations
+  ─────────────────────────────── */
+  function initSec04Animations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    var title = document.querySelector('#sec04 .sec04-title');
+    var items = document.querySelectorAll('#sec04 .notice-list li');
+    var list  = document.querySelector('#sec04 .notice-list');
+
+    // 타이틀: sec03과 동일한 부드러운 페이드업
+    if (title) title.classList.add('anim-item');
+
+    // 항목: 슬라이드인 준비 상태로 설정
+    items.forEach(function (item) { item.classList.add('anim-slide'); });
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (title) obs.observe(title);
+
+    // 리스트 컨테이너를 감시 → 진입 시 항목 전체를 스태거로 일괄 등장
+    if (list) {
+      var listObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            items.forEach(function (item, i) {
+              item.style.animationDelay = (i * 0.07) + 's';
+              item.classList.add('anim-visible');
+            });
+            listObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      listObs.observe(list);
+    }
+  }
+
+  /* ───────────────────────────────
      초기화
   ─────────────────────────────── */
   function init() {
     initParallax();
     initEntranceAnimations();
     initSec03Animations();
+    initSec04Animations();
   }
 
   if (document.readyState === 'loading') {
