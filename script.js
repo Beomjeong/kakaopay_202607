@@ -17,7 +17,7 @@
   /* ───────────────────────────────
      설정값
   ─────────────────────────────── */
-  var PARALLAX_MAX_WIDTH = 1024; // 이 너비 이하에서는 패럴렉스 비활성화
+  // var PARALLAX_MAX_WIDTH = 1024; // 전 구간 패럴렉스 활성화
 
   /* ───────────────────────────────
      1. Parallax
@@ -45,9 +45,6 @@
   }
 
   function initParallax() {
-    // 뷰포트 폭이 기준 이하면 종료 (CSS transform:none!important 가 이미 처리)
-    if (window.innerWidth <= PARALLAX_MAX_WIDTH) return;
-
     // 접근성: 움직임 최소화 선호 시 비활성화
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

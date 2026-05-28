@@ -497,12 +497,6 @@ img {
     --cont-pad: 40px;
   }
 
-  /* 패럴렉스 JS가 !important를 물고 있지 않으므로
-     CSS에서 transform을 none으로 덮어씌워 정지  */
-  .coin {
-    transform: none !important;
-  }
-
   /* 큰 코인들 축소 */
   .coin--1  { width: 190px; }
   .coin--5  { width: 155px; }
