@@ -185,6 +185,16 @@ img {
   height: auto;
   display: block;
   margin: 0 auto;
+  animation: float 3.6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kv-hero { animation: none; }
 }
 
 /* ============================================
