@@ -94,34 +94,25 @@ img {
 }
 
 /* ─── 코인별 위치·크기·투명도 ─────────────────
-   · 큰 코인(배경): 흐리게, 느리게(speed 높음)
-   · 작은 코인(근거리): 또렷하게, 빠르게(speed 낮음)
+   NEAR (가까운): 크고 선명, speed 낮음 (콘텐츠와 함께 스크롤)
+   MID  (중간)  : 중간 크기·투명도
+   FAR  (먼 배경): 작고 흐릿, speed 높음 (거의 고정된 배경)
 ──────────────────────────────────────────── */
 
-/* sec01 */
-.coin--1  { top:  1%; left:  -2%; width: 260px; opacity: 0.14; }  /* 크고 느림 */
-.coin--2  { top:  5%; right:  3%; width: 120px; opacity: 0.26; }
-.coin--3  { top: 10%; left:  61%; width:  85px; opacity: 0.18; }  /* 중앙 근처 작게 */
+/* NEAR — speed 0.15~0.25 */
+.coin--1 { top:  4%; left:  3%; width: 320px; opacity: 0.32; }
+.coin--2 { top: 40%; right: -2%; width: 335px; opacity: 0.30; }
+.coin--3 { top: 72%; left:  5%; width: 310px; opacity: 0.28; }
 
-/* sec01 → sec02 전환 */
-.coin--4  { top: 18%; left:   4%; width: 170px; opacity: 0.20; }
-.coin--5  { top: 25%; right: -1%; width: 210px; opacity: 0.14; }  /* 우측 넘침 */
+/* MID — speed 0.40~0.50 */
+.coin--4 { top: 16%; right:  10%; width: 215px; opacity: 0.20; }
+.coin--5 { top: 54%; right:  3%; width: 215px; opacity: 0.22; }
+.coin--6 { top: 83%; right:  3%; width: 230px; opacity: 0.19; }
 
-/* sec02 */
-.coin--6  { top: 34%; right:  5%; width: 140px; opacity: 0.18; }
-.coin--7  { top: 41%; left:  -1%; width: 100px; opacity: 0.28; }
-.coin--8  { top: 49%; left:  59%; width: 155px; opacity: 0.12; }  /* 배경 깊숙이 */
-
-/* sec02 → sec03 전환 */
-.coin--9  { top: 58%; left:   2%; width: 190px; opacity: 0.17; }
-.coin--10 { top: 64%; right:  4%; width: 110px; opacity: 0.30; }  /* 가장 또렷한 편 */
-
-/* sec03 */
-.coin--11 { top: 72%; left:   7%; width: 130px; opacity: 0.20; }
-.coin--12 { top: 79%; right: -1%; width: 175px; opacity: 0.14; }
-
-/* sec04 */
-.coin--13 { top: 89%; left:  47%; width: 100px; opacity: 0.22; }
+/* FAR — speed 0.65~0.78 */
+.coin--7 { top:  9%; right: 5%; width:  80px; opacity: 0.12; }
+.coin--8 { top: 30%; left:  6%; width:  75px; opacity: 0.13; }
+.coin--9 { top: 62%; left:  5%; width:  85px; opacity: 0.11; }
 
 /* ============================================
    섹션 공통
@@ -507,12 +498,10 @@ img {
     --cont-pad: 40px;
   }
 
-  /* 큰 코인들 축소 */
-  .coin--1  { width: 190px; }
-  .coin--5  { width: 155px; }
-  .coin--8  { width: 115px; }
-  .coin--9  { width: 140px; }
-  .coin--12 { width: 130px; }
+  /* NEAR 코인 축소 */
+  .coin--1 { width: 175px; }
+  .coin--2 { width: 185px; }
+  .coin--3 { width: 165px; }
 
   /* SEC01 태블릿 */
   #sec01 {
@@ -605,24 +594,22 @@ img {
     --cont-pad: 20px;
   }
 
-  /* 코인 절반 숨기기 (너무 복잡해 보이지 않게) */
-  .coin--3,
-  .coin--5,
+  /* FAR 코인 숨기기 (모바일에서 복잡해 보이지 않게) */
+  .coin--7,
   .coin--8,
-  .coin--10,
-  .coin--12 {
+  .coin--9 {
     display: none;
   }
 
-  /* 남은 코인 크기 · 투명도 조정 */
-  .coin--1  { width: 140px; left: -5%;  opacity: 0.12; }
-  .coin--2  { width:  80px;             opacity: 0.20; }
-  .coin--4  { width: 110px;             opacity: 0.15; }
-  .coin--6  { width:  90px;             opacity: 0.15; }
-  .coin--7  { width:  70px;             opacity: 0.22; }
-  .coin--9  { width: 120px;             opacity: 0.14; }
-  .coin--11 { width:  85px;             opacity: 0.18; }
-  .coin--13 { width:  70px;             opacity: 0.18; }
+  /* NEAR 코인 크기 축소 */
+  .coin--1 { width: 140px; left: -5%; opacity: 0.24; }
+  .coin--2 { width: 150px;            opacity: 0.22; }
+  .coin--3 { width: 130px; left: -5%; opacity: 0.20; }
+
+  /* MID 코인 크기 축소 */
+  .coin--4 { width: 100px; opacity: 0.16; }
+  .coin--5 { width:  95px; opacity: 0.18; }
+  .coin--6 { width: 105px; opacity: 0.15; }
 
   /* Typography 모바일 */
   :root {

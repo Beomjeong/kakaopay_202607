@@ -40,13 +40,13 @@
 
   <!-- Adobe Fonts (Typekit) -->
   <script>
-    (function(d) {
+    (function (d) {
       var config = {
         kitId: 'jjw7yow',
         scriptTimeout: 3000,
         async: true
       },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
     })(document);
   </script>
 
@@ -77,25 +77,18 @@
          배경 코인 (패럴렉스) — 스크린리더 무시
     ============================================ -->
     <div class="bg-coins" aria-hidden="true">
-      <!-- sec01 영역 -->
-      <img class="coin coin--1"  data-speed="0.70" src="assets/kakaocoin8.png" alt="">
-      <img class="coin coin--2"  data-speed="0.45" src="assets/kakaocoin4.png" alt="">
-      <img class="coin coin--3"  data-speed="0.30" src="assets/kakaocoin7.png" alt="">
-      <!-- sec01 → sec02 -->
-      <img class="coin coin--4"  data-speed="0.55" src="assets/kakaocoin3.png" alt="">
-      <img class="coin coin--5"  data-speed="0.35" src="assets/kakaocoin5.png" alt="">
-      <!-- sec02 영역 -->
-      <img class="coin coin--6"  data-speed="0.65" src="assets/kakaocoin8.png" alt="">
-      <img class="coin coin--7"  data-speed="0.40" src="assets/kakaocoin4.png" alt="">
-      <img class="coin coin--8"  data-speed="0.70" src="assets/kakaocoin7.png" alt="">
-      <!-- sec02 → sec03 -->
-      <img class="coin coin--9"  data-speed="0.50" src="assets/kakaocoin3.png" alt="">
-      <img class="coin coin--10" data-speed="0.32" src="assets/kakaocoin5.png" alt="">
-      <!-- sec03 영역 -->
-      <img class="coin coin--11" data-speed="0.60" src="assets/kakaocoin8.png" alt="">
-      <img class="coin coin--12" data-speed="0.42" src="assets/kakaocoin4.png" alt="">
-      <!-- sec04 영역 -->
-      <img class="coin coin--13" data-speed="0.58" src="assets/kakaocoin7.png" alt="">
+      <!-- NEAR: 크고 선명, speed 낮음 (가까운 층) -->
+      <img class="coin coin--1" data-speed="0.20" src="assets/kakaocoin8.png" alt="">
+      <img class="coin coin--2" data-speed="0.18" src="assets/kakaocoin4.png" alt="">
+      <img class="coin coin--3" data-speed="0.22" src="assets/kakaocoin3.png" alt="">
+      <!-- MID: 중간 크기·투명도 -->
+      <img class="coin coin--4" data-speed="0.42" src="assets/kakaocoin7.png" alt="">
+      <img class="coin coin--5" data-speed="0.45" src="assets/kakaocoin5.png" alt="">
+      <img class="coin coin--6" data-speed="0.48" src="assets/kakaocoin8.png" alt="">
+      <!-- FAR: 작고 흐릿, speed 높음 (먼 배경 층) -->
+      <img class="coin coin--7" data-speed="0.70" src="assets/kakaocoin4.png" alt="">
+      <img class="coin coin--8" data-speed="0.68" src="assets/kakaocoin7.png" alt="">
+      <img class="coin coin--9" data-speed="0.75" src="assets/kakaocoin3.png" alt="">
     </div>
 
     <!-- ============================================
@@ -109,37 +102,18 @@
 
         <!-- 로고 (카카오페이 x 피카PC방) + 헤드 타이틀 -->
         <header class="sec01-header">
-          <img
-            src="assets/bi.svg"
-            alt="카카오페이 X 피카PC방"
-            class="bi-logo"
-            width="446" height="82"
-          >
+          <img src="assets/bi.svg" alt="카카오페이 X 피카PC방" class="bi-logo" width="446" height="82">
           <!-- PC용 타이틀 (769px 이상) -->
-          <img
-            src="assets/head_title_pc.svg"
-            alt="6월 카카오페이 이벤트 타이틀"
-            class="head-title head-title--pc"
-            width="927" height="271"
-          >
+          <img src="assets/head_title_pc.svg" alt="6월 카카오페이 이벤트 타이틀" class="head-title head-title--pc" width="927"
+            height="271">
           <!-- 모바일용 타이틀 (768px 이하) -->
-          <img
-            src="assets/head_title_mo.svg"
-            alt="6월 카카오페이 이벤트 타이틀"
-            class="head-title head-title--mo"
-            width="960" height="511"
-          >
+          <img src="assets/head_title_mo.svg" alt="6월 카카오페이 이벤트 타이틀" class="head-title head-title--mo" width="960"
+            height="511">
         </header>
 
         <!-- 키비주얼 -->
         <div class="sec01-kv">
-          <img
-            src="assets/kv_hero.png"
-            alt=""
-            class="kv-hero"
-            width="900" height="600"
-            loading="eager"
-          >
+          <img src="assets/kv_hero.png" alt="" class="kv-hero" width="900" height="600" loading="eager">
         </div>
 
       </section>
@@ -206,7 +180,8 @@
                     (편의시설 카카오페이 선택)
                   </p>
                   <img src="assets/stepimg_1.png" class="step-img" alt="" loading="lazy">
-                  <a href="https://www.picaplay.com/pcbang/main.do#" class="step-btn" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.picaplay.com/pcbang/main.do#" class="step-btn" target="_blank"
+                    rel="noopener noreferrer">
                     <img src="assets/bt_txt_findpcbang.svg" alt="카카오페이 가맹 PC방 찾기">
                   </a>
                 </div>
@@ -271,4 +246,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
