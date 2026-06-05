@@ -160,6 +160,15 @@
   }
 
   /* ───────────────────────────────
+     5. Portfolio Viewer 연동
+  ─────────────────────────────── */
+  function initPortfolioScrollSync() {
+    window.addEventListener('scroll', function () {
+      window.parent.postMessage({ type: 'scroll', y: window.scrollY }, '*');
+    }, { passive: true });
+  }
+
+  /* ───────────────────────────────
      초기화
   ─────────────────────────────── */
   function init() {
@@ -167,6 +176,7 @@
     initEntranceAnimations();
     initSec03Animations();
     initSec04Animations();
+    initPortfolioScrollSync();
   }
 
   if (document.readyState === 'loading') {

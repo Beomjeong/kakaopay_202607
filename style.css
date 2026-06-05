@@ -40,6 +40,11 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   /* ① html에 overflow-x 설정 → 수평 기준 고정 */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 body {
