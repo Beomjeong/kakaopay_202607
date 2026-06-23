@@ -967,10 +967,6 @@ img {
     width: 100%;
   }
 
-  /* KV: 모바일에서 좌우 여백 제거 → 풀블리드 */
-  .sec01-kv {
-    padding: 0;
-  }
 
   /* SEC03 모바일 */
   .step-desc {
