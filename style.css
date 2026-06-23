@@ -244,6 +244,21 @@ img {
 .sparkle--12 { width: 52px; height: 52px; top: 15%; left:  3%;  opacity: 0.6;  animation: sparkle-twinkle 6.0s ease-in-out infinite 0.2s; }
 .sparkle--13 { width: 40px; height: 40px; top: 85%; right: 42%; opacity: 0.7;  animation: sparkle-twinkle 5.2s ease-in-out infinite 2.1s; }
 
+/* 헤드 타이틀 주변 선명 별 — blur 줄이고 opacity 높임 */
+.sparkle--vivid {
+  background:
+    radial-gradient(ellipse 16% 100% at 50% 50%, rgba(255,255,255,1.0) 0%, transparent 100%),
+    radial-gradient(ellipse 100% 16% at 50% 50%, rgba(255,255,255,1.0) 0%, transparent 100%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.65) 0%, transparent 40%);
+  filter: blur(0.2px);
+}
+
+.sparkle--v1 { width: 20px; height: 20px; top:  4%; left:  9%;  opacity: 1.0; animation: sparkle-twinkle 2.8s ease-in-out infinite 0.0s; }
+.sparkle--v2 { width: 28px; height: 28px; top:  7%; right: 11%; opacity: 0.95; animation: sparkle-twinkle 3.4s ease-in-out infinite 0.6s; }
+.sparkle--v3 { width: 16px; height: 16px; top: 11%; left: 44%;  opacity: 1.0; animation: sparkle-twinkle 2.5s ease-in-out infinite 1.2s; }
+.sparkle--v4 { width: 22px; height: 22px; top: 15%; right: 28%; opacity: 0.9; animation: sparkle-twinkle 3.8s ease-in-out infinite 0.3s; }
+.sparkle--v5 { width: 18px; height: 18px; top:  9%; left: 26%;  opacity: 0.95; animation: sparkle-twinkle 3.1s ease-in-out infinite 1.7s; }
+
 @media (prefers-reduced-motion: reduce) {
   .sparkle { animation: none; }
 }
@@ -291,9 +306,30 @@ img {
   position: relative;
   overflow: hidden;
   max-width: 100%;
+  animation: title-glow-breathe 3s ease-in-out infinite;
 }
 
-/* shine 효과는 title_main.svg 내부의 SVG mask + CSS animation으로 처리 */
+@keyframes title-glow-breathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 50px rgba(255,255,255,0.5))
+            drop-shadow(0 0 30px rgba(255,255,255,0.5))
+            drop-shadow(0 0 100px rgba(255,255,255,0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.1))
+            drop-shadow(0 0  6px rgba(255,255,255,0.1))
+            drop-shadow(0 0 20px rgba(255,255,255,0.15));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .head-title-wrap {
+    animation: none;
+    filter: drop-shadow(0 0 50px rgba(255,255,255,0.5))
+            drop-shadow(0 0 30px rgba(255,255,255,0.5))
+            drop-shadow(0 0 100px rgba(255,255,255,0.7));
+  }
+}
 
 .head-title-wrap--mo {
   display: none;
