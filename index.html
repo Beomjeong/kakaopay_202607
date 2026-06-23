@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- ▼▼ 페이지마다 수정하는 값 (여기만 수정) ▼▼ -->
+  <meta property="og:title" content="카카오페이 첫결제 야호~!">
+  <meta property="og:description" content="7월에도 이어지는 피카PC방 카카오페이 첫 결제 즉시할인 이벤트!">
+  <meta property="og:url" content="https://beomjeong.github.io/kakaopay_202607/index.html">
+  <meta property="og:image" content="assets/Thumbnail_800x400.jpg">
+  <meta name="twitter:image" content="assets/Thumbnail_1200x630.jpg">
+  <!-- og:image과 twitter:image 주소는 절대경로로 이미지 시안 확정 후 배포 전 반드시 교체해주세요. (상대경로 입력 시 공유 시 이미지가 깨지는 현상 발생) -->
+  <!-- ▲▲ 페이지마다 수정하는 값 ▲▲ -->
+
+  <!-- title / description / twitter 태그는 아래 스크립트가 og: 값을 읽어서 자동으로 채움 -->
+  <script>
+    (function () {
+      var g = function (p) { return document.querySelector('meta[property="og:' + p + '"]').content; };
+      document.title = g('title');
+      [['name', 'description', g('description')],
+      ['name', 'twitter:card', 'summary_large_image'],
+      ['name', 'twitter:title', g('title')],
+      ['name', 'twitter:description', g('description')],
+      ['name', 'twitter:url', g('url')]
+      ].forEach(function (m) {
+        var el = document.createElement('meta');
+        el.setAttribute(m[0], m[1]); el.content = m[2];
+        document.head.appendChild(el);
+      });
+    })();
+  </script>
+
+  <meta name="keywords" content="카카오페이 이벤트, 카카오페이 첫결제 할인, 카카오페이 할인, 피카피시방 할인, 피카피시방 카카오페이">
+  <meta name="author" content="Mediaweb">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="피카PC방 2026년 7월 카카오페이 프로모션">
+
+  <!-- Adobe Fonts (Typekit) -->
+  <script>
+    (function (d) {
+      var config = {
+        kitId: 'jjw7yow',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@400;500;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <!-- Asta Sans: 굵기 300~800 지원 (900 없음 → 브라우저가 800으로 자동 대체)
+       Noto Sans KR: Asta Sans 미지원 글자 fallback                          -->
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- 카카오 JavaScript SDK (카카오톡 공유용) -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <!-- ============================================
+         배경 코인 (패럴렉스) — 스크린리더 무시
+    ============================================ -->
+    <div class="bg-coins" aria-hidden="true">
+      <!-- NEAR: 크고 선명, speed 낮음 (가까운 층) -->
+      <img class="coin coin--1" data-speed="0.20" src="assets/kakaocoin8.png" alt="">
+      <img class="coin coin--2" data-speed="0.18" src="assets/kakaocoin4.png" alt="">
+      <img class="coin coin--3" data-speed="0.22" src="assets/kakaocoin3.png" alt="">
+      <!-- MID: 중간 크기·투명도 -->
+      <img class="coin coin--4" data-speed="0.42" src="assets/kakaocoin7.png" alt="">
+      <img class="coin coin--5" data-speed="0.45" src="assets/kakaocoin5.png" alt="">
+      <img class="coin coin--6" data-speed="0.48" src="assets/kakaocoin8.png" alt="">
+      <!-- FAR: 작고 흐릿, speed 높음 (먼 배경 층) -->
+      <img class="coin coin--7" data-speed="0.70" src="assets/kakaocoin4.png" alt="">
+      <img class="coin coin--8" data-speed="0.68" src="assets/kakaocoin7.png" alt="">
+      <img class="coin coin--9" data-speed="0.75" src="assets/kakaocoin3.png" alt="">
+    </div>
+
+    <!-- ============================================
+         배경 반짝 별 — 스크린리더 무시
+    ============================================ -->
+    <div class="bg-sparkles" aria-hidden="true">
+      <span class="sparkle sparkle--1"></span>
+      <span class="sparkle sparkle--2"></span>
+      <span class="sparkle sparkle--3"></span>
+      <span class="sparkle sparkle--4"></span>
+      <span class="sparkle sparkle--5"></span>
+      <span class="sparkle sparkle--6"></span>
+      <span class="sparkle sparkle--7"></span>
+      <span class="sparkle sparkle--8"></span>
+      <span class="sparkle sparkle--9"></span>
+      <span class="sparkle sparkle--10"></span>
+      <span class="sparkle sparkle--11"></span>
+      <span class="sparkle sparkle--12"></span>
+      <span class="sparkle sparkle--13"></span>
+      <!-- 헤드 타이틀 주변 선명 별 -->
+      <span class="sparkle sparkle--v1"></span>
+      <span class="sparkle sparkle--v2"></span>
+      <span class="sparkle sparkle--v3"></span>
+      <span class="sparkle sparkle--v4"></span>
+      <span class="sparkle sparkle--v5"></span>
+    </div>
+
+
+    <!-- ============================================
+         메인 콘텐츠
+    ============================================ -->
+    <main id="main">
+      <!-- ============================================
+           SEC01 — 타이틀
+      ============================================ -->
+      <section id="sec01" class="section">
+
+        <!-- 로고 (카카오페이 x 피카PC방) + 헤드 타이틀 -->
+        <header class="sec01-header">
+          <img src="assets/bi.svg" alt="카카오페이 X 피카PC방" class="bi-logo">
+          <!-- PC용 타이틀 (769px 이상) -->
+          <div class="head-title-wrap head-title-wrap--pc">
+            <img src="assets/title_main.svg" alt="7월 카카오페이 이벤트 타이틀" class="head-title" width="927" height="271">
+          </div>
+          <!-- 모바일용 타이틀 (768px 이하) -->
+          <div class="head-title-wrap head-title-wrap--mo">
+            <img src="assets/title_main.svg" alt="7월 카카오페이 이벤트 타이틀" class="head-title" width="960" height="511">
+          </div>
+        </header>
+
+        <!-- 키비주얼 -->
+        <div class="sec01-kv">
+          <img src="assets/kv_hero.svg" alt="" class="kv-hero" width="900" height="600" loading="eager">
+        </div>
+
+      </section>
+      <!-- ============================================
+           SEC02 — 이벤트 내용
+      ============================================ -->
+      <section id="sec02" class="section">
+        <div class="sec02-inner">
+          <ul class="event-list">
+
+            <!-- 기간 -->
+            <li class="event-item">
+              <span class="event-badge">기간</span>
+              <div class="event-content">
+                <p class="event-desc">2026. 07. 01(수) ~ 2026. 07. 31(금)</p>
+                <p class="event-note">※ 예산 소진 시 조기종료</p>
+              </div>
+            </li>
+
+            <!-- 대상 -->
+            <li class="event-item">
+              <span class="event-badge">대상</span>
+              <div class="event-content">
+                <p class="event-desc">피카PC방 카카오페이 첫 결제 고객</p>
+                <p class="event-note event-note--red">※ 기존 PC방 카카오페이 결제 이력이 없는 고객 대상</p>
+              </div>
+            </li>
+
+            <!-- 혜택 -->
+            <li class="event-item">
+              <span class="event-badge">혜택</span>
+              <div class="event-content">
+                <p class="event-desc">카카오페이 가맹 피카PC방에서<br>카카오페이머니로 5천원 이상 결제 시</p>
+                <div class="event-benefit">
+                  <span class="event-highlight">선착순 500원 즉시 할인!</span>
+                  <span class="event-note">(기간 내 1인 1회)</span>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+      <!-- ============================================
+           SEC03 — 참여방법
+      ============================================ -->
+      <section id="sec03" class="section">
+        <div class="sec03-inner">
+          <div class="sec03-box">
+
+            <img src="assets/sec03_title.svg" class="sec03-title" alt="참여방법">
+
+            <div class="steps">
+
+              <!-- STEP 1 -->
+              <div class="step">
+                <div class="step-badge">
+                  <img src="assets/txt_step1.svg" alt="STEP 1">
+                </div>
+                <div class="step-card step-card--btn">
+                  <p class="step-desc">
+                    PC방 찾기를 통해<br>
+                    <strong>카카오페이 가맹 PC방 방문</strong><br>
+                    (편의시설 카카오페이 선택)
+                  </p>
+                  <img src="assets/stepimg_1.png" class="step-img" alt="" loading="lazy">
+                  <a href="https://www.picaplay.com/pcbang/main.do#" class="step-btn" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="assets/bt_txt_findpcbang.svg" alt="카카오페이 가맹 PC방 찾기">
+                  </a>
+                </div>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="step">
+                <div class="step-badge">
+                  <img src="assets/txt_step2.svg" alt="STEP 2">
+                </div>
+                <div class="step-card">
+                  <p class="step-desc">
+                    요금제나 먹거리 결제 시<br>
+                    결제수단 카카오페이 선택
+                  </p>
+                  <img src="assets/stepimg_2.png" class="step-img" alt="" loading="lazy">
+                </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="step">
+                <div class="step-badge">
+                  <img src="assets/txt_step3.svg" alt="STEP 3">
+                </div>
+                <div class="step-card">
+                  <p class="step-desc">
+                    QR 스캔하고, 카카오페이머니로<br>
+                    <strong>결제하면 참여 완료!</strong>
+                  </p>
+                  <img src="assets/stepimg_3.png" class="step-img" alt="" loading="lazy">
+                </div>
+              </div>
+
+            </div><!-- /.steps -->
+          </div><!-- /.sec03-box -->
+        </div><!-- /.sec03-inner -->
+      </section>
+      <!-- ============================================
+           SEC04 — 유의사항
+      ============================================ -->
+      <section id="sec04" class="section">
+        <div class="sec04-inner">
+
+          <img src="assets/sec04_title.svg" class="sec04-title" alt="꼭 확인하세요!">
+
+          <ul class="notice-list">
+            <li>본 이벤트는 피카 PC방 카카오페이 첫 결제 회원만 참여 가능합니다.</li>
+            <li>본 이벤트는 카카오페이머니로 5,000원 이상 결제 시에만 할인 혜택이 적용됩니다.</li>
+            <li>본 이벤트는 기간 내 1인 1회, 선착순으로 참여 가능합니다.</li>
+            <li>본 이벤트는 상황에 따라 조기 종료 또는 연장될 수 있습니다.</li>
+            <li>PC방 카카오페이 첫 결제 이벤트에 참여한 이력이 있는 회원은 참여 불가합니다.</li>
+            <li>카카오페이로 피카페이를 충전한 금액은 이벤트 대상에 포함되지 않습니다.</li>
+            <li>기간 내 전체 취소 후 다시 결제 시 할인 혜택 재적용이 가능하며, 부분 취소 시에는 불가합니다.</li>
+            <li>이벤트 진행 관련 문의는 피카플레이 또는 크래프트박스를 통해 1:1 문의 부탁드립니다.</li>
+          </ul>
+
+        </div>
+      </section>
+    </main>
+
+  </div><!-- /#wrapper -->
+
+  <script src="script.js"></script>
+</body>
+
+</html>

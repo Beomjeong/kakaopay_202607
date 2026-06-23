@@ -1,0 +1,29 @@
+{
+  "name": "endfield",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node script.js",
+    "dev": "serve .",
+    "deploy": "gh-pages -d ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^14.2.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beomjeong/kakaopay_202607.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Beomjeong/kakaopay_202607/issues"
+  },
+  "homepage": "https://beomjeong.github.io/kakaopay_202607",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
