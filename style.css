@@ -246,46 +246,10 @@ img {
   max-width: 100%;
 }
 
-/* SVG를 mask로 써서 shine이 글자/그래픽 영역에만 표시되게 함 */
-.head-title-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.55) 50%,
-      transparent 70%);
-  transform: translateX(-200%) skewX(-15deg);
-  animation: shine-sweep 3s ease-in-out infinite;
-  pointer-events: none;
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-}
-
-.head-title-wrap--pc::after {
-  -webkit-mask-image: url('assets/head_title_pc.svg');
-          mask-image: url('assets/head_title_pc.svg');
-}
+/* shine 효과는 title_main.svg 내부의 SVG mask + CSS animation으로 처리 */
 
 .head-title-wrap--mo {
   display: none;
-}
-
-.head-title-wrap--mo::after {
-  -webkit-mask-image: url('assets/head_title_mo.svg');
-          mask-image: url('assets/head_title_mo.svg');
-}
-
-@keyframes shine-sweep {
-  0%   { transform: translateX(-200%) skewX(-15deg); }
-  22%  { transform: translateX(200%)  skewX(-15deg); }
-  100% { transform: translateX(200%)  skewX(-15deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .head-title-wrap::after { animation: none; }
 }
 
 .head-title {
