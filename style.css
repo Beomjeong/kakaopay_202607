@@ -304,7 +304,7 @@ img {
 /* 헤드 타이틀 SVG */
 .head-title-wrap {
   position: relative;
-  overflow: hidden;
+  overflow: show;
   max-width: 100%;
   animation: title-glow-breathe 3s ease-in-out infinite;
 }
