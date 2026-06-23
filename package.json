@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/Beomjeong/kakaopay_202607/issues"
   },
-  "homepage": "https://github.com/Beomjeong/kakaopay_202607#readme",
+  "homepage": "https://beomjeong.github.io/kakaopay_202607",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
