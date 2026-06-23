@@ -6,6 +6,7 @@
   --clr-black: #000000;
   --clr-red: #FF0000;
   --clr-white: #FFFFFF;
+  --clr-pink: rgba(255, 100, 165, 1.0);
 
   --bp-tablet: 1024px;
   --bp-mobile: 768px;
@@ -357,7 +358,7 @@ img {
 }
 
 .kv-hero {
-  width: 100%;
+  width: 80%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -379,6 +380,12 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .kv-hero {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .kv-hero {
+    width: 90%;
   }
 }
 
@@ -478,7 +485,7 @@ img {
   height: 64px;
   padding: 0 27px;
   background-color: var(--clr-black);
-  border-radius: 20px;
+  border-radius: 15px;
   font-size: var(--fs-desc-lg-bd);
   font-weight: var(--fw-desc-lg-bd);
   color: var(--clr-white);
